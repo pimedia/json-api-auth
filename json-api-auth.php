@@ -4,7 +4,7 @@
   Plugin Name: JSON API Auth
   Plugin URI: http://downloads.wordpress.org/plugin/json-api-auth.zip
   Description: Extends the JSON API for user authentiocation utilizing the Wordpress cookie validation and generation.
-  Version: 0.1
+  Version: 1.0
   Author: mattberg, Ali Qureshi
   Author URI: http://www.parorrey.com
   License: GPLv3

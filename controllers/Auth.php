@@ -48,6 +48,11 @@ class JSON_API_Auth_Controller {
 
     	$cookie = wp_generate_auth_cookie($user->ID, $expiration, 'logged_in');
 
+
+		preg_match('|src="(.+?)"|', get_avatar( $user->ID, 32 ), $avatar);		
+   
+		
+		
 		return array(
 			"cookie" => $cookie,
 			"user" => array(
@@ -63,6 +68,7 @@ class JSON_API_Auth_Controller {
 				"nickname" => $user->nickname,
 				"description" => $user->user_description,
 				"capabilities" => $user->wp_capabilities,
+				"avatar" => $avatar[1]
 			),
 		);
 	}
@@ -80,7 +86,8 @@ class JSON_API_Auth_Controller {
 		}
 
 		$user = get_userdata($user_id);
-
+        preg_match('|src="(.+?)"|', get_avatar( $user->ID, 32 ), $avatar);
+		
 		return array(
 			"user" => array(
 				"id" => $user->ID,
@@ -95,6 +102,7 @@ class JSON_API_Auth_Controller {
 				"nickname" => $user->nickname,
 				"description" => $user->user_description,
 				"capabilities" => $user->wp_capabilities,
+				"avatar" => $avatar[1]
 			)
 		);
 	}	
