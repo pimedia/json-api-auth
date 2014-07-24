@@ -6,7 +6,7 @@ Tags: json api, api, authenticate user, wordpress user authentication
 
 Contributors: parorrey
 
-Stable tag: 1.1
+Stable tag: 1.2
 
 Requires at least: 3.0.1
 
@@ -18,10 +18,11 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Extends the JSON API Plugin for RESTful user authentication
 
-
 ==Description==
 
-JSON API Auth is a plugin that extends the JSON API Plugin with a new Controller to allow user authentication.
+JSON API Auth extends the JSON API Plugin to allow RESTful user authentication.
+
+
 
 Features include:
 
@@ -33,7 +34,10 @@ Features include:
 
 * Get Current User Info
 
+
 For details: http://www.parorrey.com/solutions/json-api-auth/
+
+
 
 ==Installation==
 
@@ -55,10 +59,16 @@ To install JSON API Auth just follow these steps:
 
 ==Changelog==
 
+= 1.2 =
+
+* Updated plugin description, documentation and few urls
+
 = 1.1 =
 
 * Added clear_auth_cookie() for removing auth cookie.
+
 * Added documentation for the available end points
+
 
 = 1.0 =
 
@@ -84,6 +94,7 @@ To install JSON API Auth just follow these steps:
 
 Thanks to 'mattberg' who wrote the auth controller (https://github.com/mattberg/wp-json-api-auth) initially. I have added few methods and authored it as a WordPress plugin so that it could easily be searched and installed vis WordPress. 
 
+
 * There are following methods available: validate_auth_cookie, generate_auth_cookie, clear_auth_cookie, get_currentuserinfo
 
 * nonce can be created by calling http://localhost/api/get_nonce/?controller=auth&method=generate_auth_cookie
@@ -92,6 +103,13 @@ Thanks to 'mattberg' who wrote the auth controller (https://github.com/mattberg/
 
 * Use cookie like this with your other controller calls: http://localhost/api/contoller-name/method-name/?cookie=Catherine|1392018917|3ad7b9f1c5c2cccb569c8a82119ca4fd
 
+For isntance, you have a new controller 'events' and want to allow users to post new 'event' using 'add_event' method.
+This is how you will call the end point with cookie and post the event with user info:
+
+http://localhost/api/events/add_event/?cookie=Catherine|1392018917|3ad7b9f1c5c2cccb569c8a82119ca4fd
+
+If you want sample code how it can be done, check 'JSON API User' plugin https://wordpress.org/plugins/json-api-user/. This Auth plugin is part of JSON API User plugin.
+ 
 = Method: validate_auth_cookie =
 
 It needs 'cookie' var.
