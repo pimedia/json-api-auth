@@ -5,11 +5,7 @@
   Plugin Name: JSON API Auth  
   Plugin URI: http://www.parorrey.com/solutions/json-api-auth/
   Description: Extends the JSON API Plugin for RESTful user authentiocation
-<<<<<<< HEAD
-  Version: 1.4
-=======
-  Version: 1.3
->>>>>>> origin/master
+  Version: 1.5
   Author: Ali Qureshi
   Author URI: http://www.parorrey.com
   License: GPLv3
@@ -31,6 +27,8 @@ if (!is_plugin_active('json-api/json-api.php')) {
 add_filter('json_api_controllers', 'pimAuthJsonApiController');
 
 add_filter('json_api_auth_controller_path', 'setAuthControllerPath');
+
+add_action('init', 'json_api_auth_checkAuthCookie', 100);
 
 load_plugin_textdomain('json-api-auth', false, basename(dirname(__FILE__)) . '/languages');
 
@@ -57,4 +55,17 @@ function setAuthControllerPath($sDefaultPath) {
 
     return dirname(__FILE__) . '/controllers/Auth.php';
 
+}
+
+function json_api_auth_checkAuthCookie($sDefaultPath) {
+    global $json_api;
+
+    if ($json_api->query->cookie) {
+      $user_id = wp_validate_auth_cookie($json_api->query->cookie, 'logged_in');
+      if ($user_id) {
+        $user = get_userdata($user_id);
+
+        wp_set_current_user($user->ID, $user->user_login);
+      }
+    }
 }

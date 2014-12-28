@@ -3,8 +3,8 @@
 /*
 Controller Name: Auth
 Controller Description: Authentication add-on controller for the Wordpress JSON API plugin
-Controller Author: Matt Berg
-Controller Author Twitter: @mattberg
+Controller Author: Matt Berg, Ali Qureshi
+Controller Author Twitter: @parorrey
 */
 
 
@@ -16,78 +16,30 @@ Controller Author Twitter: @mattberg
 class JSON_API_Auth_Controller {
 
 
-
-
-
-
-
 	public function validate_auth_cookie() {
-
-
 
 		global $json_api;
 
-
-
-
-
-
-
 		if (!$json_api->query->cookie) {
-
-
 
 			$json_api->error("You must include a 'cookie' authentication cookie. Use the `create_auth_cookie` Auth API method.");
 
-
-
 		}		
-
-
-
-
-
-
 
     	$valid = wp_validate_auth_cookie($json_api->query->cookie, 'logged_in') ? true : false;
 
-
-
-
-
-
-
 		return array(
 
-
-
 			"valid" => $valid
-
-
 
 		);
 
 
-
 	}
 
-
-
-
-
-
-
 	public function generate_auth_cookie() {
-
-
-
+		
 		global $json_api;
-
-
-
-
-
-
 
 		$nonce_id = $json_api->get_nonce_id('auth', 'generate_auth_cookie');
 
@@ -95,84 +47,45 @@ class JSON_API_Auth_Controller {
 
 		if (!wp_verify_nonce($json_api->query->nonce, $nonce_id)) {
 
-
-
 			$json_api->error("Your 'nonce' value was incorrect. Use the 'get_nonce' API method.");
-
-
-
 		}
-
-
-
-
-
 
 
 		if (!$json_api->query->username) {
 
-
-
 			$json_api->error("You must include a 'username' var in your request.");
-
-
 
 		}
 
 
-
-		
-
-
-
 		if (!$json_api->query->password) {
-
-
 
 			$json_api->error("You must include a 'password' var in your request.");
 
+		}	
+		
+		if ($json_api->query->seconds) 	$seconds = (int) $json_api->query->seconds;
 
-
-		}		
-
-
-
-
+		else $seconds = 1209600;//14 days
 
 
 
     	$user = wp_authenticate($json_api->query->username, $json_api->query->password);
 
-
-
     	if (is_wp_error($user)) {
-
-
 
     		$json_api->error("Invalid username and/or password.", 'error', '401');
 
-
-
     		remove_action('wp_login_failed', $json_api->query->username);
-
-
 
     	}
 
 
-
-
-
-
-
-    	$expiration = time() + apply_filters('auth_cookie_expiration', 1209600, $user->ID, true);
-
+    	$expiration = time() + apply_filters('auth_cookie_expiration', $seconds, $user->ID, true);
 
     	$cookie = wp_generate_auth_cookie($user->ID, $expiration, 'logged_in');
 
-
 		preg_match('|src="(.+?)"|', get_avatar( $user->ID, 32 ), $avatar);	
-
 
 		return array(
 			"cookie" => $cookie,
@@ -196,7 +109,7 @@ class JSON_API_Auth_Controller {
 	}
 
 
-
+/*
 public function clear_auth_cookie() {
 		global $json_api;
 		if (!$json_api->query->cookie) {
@@ -226,7 +139,7 @@ public function clear_auth_cookie() {
 		);
 
 	}
-
+*/
 
 
 	public function get_currentuserinfo() {

@@ -6,19 +6,11 @@ Tags: json api, api, authenticate user, wordpress user authentication
 
 Contributors: parorrey
 
-<<<<<<< HEAD
-Stable tag: 1.4
+Stable tag: 1.5
 
 Requires at least: 3.0.1
 
 Tested up to: 4.1
-=======
-Stable tag: 1.3
-
-Requires at least: 3.0.1
-
-Tested up to: 3.9.1
->>>>>>> origin/master
 
 License: GPLv2 or later
 
@@ -67,13 +59,16 @@ To install JSON API Auth just follow these steps:
 
 ==Changelog==
 
-<<<<<<< HEAD
+= 1.5 =
+
+* Added the function to authenticate, allow the user (with edit rights) to use JSON API core controllers as well. Thanks `necro_txilok` for the suggestion.
+* Removed `clear_auth_cookie` for not doing what it intends to do, instead `generate_auth_cookie` has been modified to allow setting up auth cookie for any required duration. Just provide the `seconds` var with `nonce`, `username` and `password` to get required cookie. Default time is 14 days.
+* Fixed typos in documentation. 
+
 = 1.4 =
 
 * update for WordPress 4.1
 
-=======
->>>>>>> origin/master
 = 1.3 =
 
 * Removed bug for generating cookie
@@ -123,7 +118,7 @@ Thanks to 'mattberg' who wrote the auth controller (https://github.com/mattberg/
 
 * Use cookie like this with your other controller calls: http://localhost/api/contoller-name/method-name/?cookie=Catherine|1392018917|3ad7b9f1c5c2cccb569c8a82119ca4fd
 
-For isntance, you have a new controller 'events' and want to allow users to post new 'event' using 'add_event' method.
+For instance, you have a new controller 'events' and want to allow users to post new 'event' using 'add_event' method.
 This is how you will call the end point with cookie and post the event with user info:
 
 http://localhost/api/events/add_event/?cookie=Catherine|1392018917|3ad7b9f1c5c2cccb569c8a82119ca4fd
@@ -139,20 +134,17 @@ http://localhost/api/auth/validate_auth_cookie/?cookie=Catherine|1392018917|3ad7
 
 = Method: generate_auth_cookie =
 
-It needs 'nonce' var.
+It needs `nonce`, `username`, `password` vars. `seconds` is optional.
 
 First get the nonce: http://localhost/api/get_nonce/?controller=auth&method=generate_auth_cookie
 
-Then generate cookie: http://localhost/api/auth/generate_auth_cookie/?nonce=375034fjwfn39u8&user_id=john&password=PASSWORD-HERE
+Then generate cookie: http://localhost/api/auth/generate_auth_cookie/?nonce=375034fjwfn39u8&username=john&password=PASSWORD-HERE
 
+Optional 'seconds' var. It provided, generated cookie will be valid for that many seconds, otherwise default is for 14 days.
 
-= Method: clear_auth_cookie =
+generate cookie for 1 minute: http://localhost/api/auth/generate_auth_cookie/?nonce=375034fjwfn39u8&username=john&password=PASSWORD-HERE&seconds=60
 
-It needs 'cookie' var.
-
-http://localhost/api/auth/validate_auth_cookie/?cookie=Catherine|1392018917|3ad7b9f1c5c2cccb569c8a82119ca4fd
-
-it will clear/expire any valid cookie that was earlier genereated using generate_auth_cookie end point
+60 means 1 minute.
 
 
 = Method: get_currentuserinfo =
