@@ -5,7 +5,11 @@
   Plugin Name: JSON API Auth  
   Plugin URI: http://www.parorrey.com/solutions/json-api-auth/
   Description: Extends the JSON API Plugin for RESTful user authentiocation
+<<<<<<< HEAD
   Version: 1.4
+=======
+  Version: 1.3
+>>>>>>> origin/master
   Author: Ali Qureshi
   Author URI: http://www.parorrey.com
   License: GPLv3
