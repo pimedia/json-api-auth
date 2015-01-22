@@ -6,7 +6,7 @@ Tags: json api, api, authenticate user, wordpress user authentication
 
 Contributors: parorrey
 
-Stable tag: 1.5.1
+Stable tag: 1.6
 
 Requires at least: 3.0.1
 
@@ -57,6 +57,11 @@ To install JSON API Auth just follow these steps:
 
 
 ==Changelog==
+
+= 1.6 =
+
+* generate_auth_cookie does not require nonce any more to generate cookie.
+* generate_auth_cookie now also returns 'cookie_name'.
 
 = 1.5.1 =
 
@@ -139,15 +144,13 @@ http://localhost/api/auth/validate_auth_cookie/?cookie=Catherine|1392018917|3ad7
 
 = Method: generate_auth_cookie =
 
-It needs `nonce`, `username`, `password` vars. `seconds` is optional.
+It needs `username`, `password` vars. `seconds` is optional.
 
-First get the nonce: http://localhost/api/get_nonce/?controller=auth&method=generate_auth_cookie
-
-Then generate cookie: http://localhost/api/auth/generate_auth_cookie/?nonce=375034fjwfn39u8&username=john&password=PASSWORD-HERE
+Then generate cookie: http://localhost/api/auth/generate_auth_cookie/?username=john&password=PASSWORD-HERE
 
 Optional 'seconds' var. It provided, generated cookie will be valid for that many seconds, otherwise default is for 14 days.
 
-generate cookie for 1 minute: http://localhost/api/auth/generate_auth_cookie/?nonce=375034fjwfn39u8&username=john&password=PASSWORD-HERE&seconds=60
+generate cookie for 1 minute: http://localhost/api/auth/generate_auth_cookie/?username=john&password=PASSWORD-HERE&seconds=60
 
 60 means 1 minute.
 

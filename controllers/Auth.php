@@ -41,14 +41,13 @@ class JSON_API_Auth_Controller {
 		
 		global $json_api;
 
+		/*
 		$nonce_id = $json_api->get_nonce_id('auth', 'generate_auth_cookie');
-
-
 
 		if (!wp_verify_nonce($json_api->query->nonce, $nonce_id)) {
 
 			$json_api->error("Your 'nonce' value was incorrect. Use the 'get_nonce' API method.");
-		}
+		}*/
 
 
 		if (!$json_api->query->username) {
@@ -89,6 +88,7 @@ class JSON_API_Auth_Controller {
 
 		return array(
 			"cookie" => $cookie,
+			"cookie_name" => LOGGED_IN_COOKIE,
 			"user" => array(
 				"id" => $user->ID,
 				"username" => $user->user_login,
@@ -107,39 +107,6 @@ class JSON_API_Auth_Controller {
 			),
 		);
 	}
-
-
-/*
-public function clear_auth_cookie() {
-		global $json_api;
-		if (!$json_api->query->cookie) {
-
-			$json_api->error("You must include a valid 'cookie' to clear it.");
-		}	
-
-
-
-     $user_id = wp_validate_auth_cookie($json_api->query->cookie, 'logged_in');
-	 
-
-	 	if (!$user_id) {
-			$json_api->error("Invalid authentication cookie. Provide a valid cookie to clear.");
-		}
-
-
-      $expiration = time() + apply_filters('auth_cookie_expiration', -1209600, $user_id, true);
-
-     $cookie = wp_generate_auth_cookie($user_id, $expiration, 'logged_in');
-
-     $valid = wp_validate_auth_cookie($cookie, 'logged_in') ? true : false;
-
-
-		return array(
-			"valid" => $valid
-		);
-
-	}
-*/
 
 
 	public function get_currentuserinfo() {
