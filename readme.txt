@@ -2,11 +2,11 @@
 === JSON API Auth ===
 
 Donate link: http://www.parorrey.com
-Tags: json api, api, authenticate user, wordpress user authentication
+Tags: json api, api, authenticate user, WordPress user authentication
 Contributors: parorrey
-Stable tag: 2.0.0
+Stable tag: 2.5.0
 Requires at least: 3.0.1
-Tested up to: 5.0.0
+Tested up to: 5.5.3
 Requires PHP: 5.3
 License: GPLv2 or later
 
@@ -18,6 +18,7 @@ Extends the JSON API Plugin for RESTful user authentication
 
 JSON API Auth extends the JSON API Plugin to allow RESTful user authentication.
 
+JSON API Plugin, that is required, was closed on August 7, 2019 from WordPress repository. You can download <a href="https://github.com/PI-Media/json-api">JSON API Plugin</a> from https://github.com/PI-Media/json-api until it is republished and available on WordPress.
 
 Features include:
 
@@ -33,7 +34,7 @@ Credits: http://www.parorrey.com/solutions/json-api-auth/
 
 == Installation ==
 
-First you have to install the JSON API for WordPress Plugin (http://wordpress.org/extend/plugins/json-api/installation/).
+First you have to install the JSON API for WordPress Plugin (http://wordpress.org/extend/plugins/json-api/installation/). or You can download <a href="https://github.com/PI-Media/json-api">JSON API Plugin</a> from https://github.com/PI-Media/json-api
 
 To install JSON API Auth just follow these steps:
 
@@ -51,94 +52,28 @@ To install JSON API Auth just follow these steps:
 
 == Changelog ==
 
+= 2.5.0 =
+* Updated for wordpress version 5.5.3
+
+= 2.4.0 =
+
+* Fixed bug in the generate_auth_cookie endpoint.
+
+= 2.3.0 =
+
+* Updated for JSON API Plugin diretory check error and updated action links.
+
+= 2.2.0 =
+
+* Updated for GitHub and settings action links.
+
+= 2.1.0 =
+
+* Updated for WordPress version & added JSON API plugin GitHub link due its closing down on WordPress repository.
+
 = 2.0.0 =
 
 * Updated for wordpress version
-
-= 1.9.4 =
-
-* Updated logo and header.
-
-= 1.9.3 =
-
-* Added minimum php version requirement.
-
-= 1.9.2 =
-
-* Added icons, screenshots, & fixed plugin header. 
-
-= 1.9.1 =
-
-* Updated for WordPress 4.9.8 version. 
-
-= 1.9 =
-
-* Updated for WordPress 4.9 version. 
-
-
-= 1.8 =
-
-* Updated for WordPress 4.4 version. Made it secure by adding SSL check and adding POST method support, thanks to 'xiffy' for sharing code. 
-
-= 1.7 =
-
-* updated for wordpress 4.1.2 version
-
-= 1.6 =
-
-* generate_auth_cookie does not require nonce any more to generate cookie.
-* generate_auth_cookie now also returns 'cookie_name'.
-
-= 1.5.1 =
-
-* Fixed the JSON API Plugin link with protocol
-* Updated notes for documentation.
-
-
-= 1.5 =
-
-* Added the function to authenticate, allow the user (with edit rights) to use JSON API core controllers as well. Thanks `necro_txilok` for the suggestion.
-* Removed `clear_auth_cookie` for not doing what it intends to do, instead `generate_auth_cookie` has been modified to allow setting up auth cookie for any required duration. Just provide the `seconds` var with `nonce`, `username` and `password` to get required cookie. Default time is 14 days.
-* Fixed typos in documentation. 
-
-= 1.4 =
-
-* update for WordPress 4.1
-
-= 1.3 =
-
-* Removed bug for generating cookie
-
-
-= 1.2 =
-
-* Updated plugin description, documentation and few urls
-
-= 1.1 =
-
-* Added clear_auth_cookie() for removing auth cookie.
-
-* Added documentation for the available end points
-
-
-= 1.0 =
-
-* Added the user avatar info for generate_auth_cookie() and get_currentuserinfo()
-
-
-* Updated the FAQs
-
-= 0.1 =
-
-* Initial release.
-
-
-
-== Upgrade Notice ==
-
-= 0.1 =
-
-* Initial release.
 
 
  == Frequently Asked Questions ==

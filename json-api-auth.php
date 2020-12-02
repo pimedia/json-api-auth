@@ -5,7 +5,7 @@
   Plugin Name: JSON API Auth  
   Plugin URI: http://www.parorrey.com/solutions/json-api-auth/
   Description: Extends the JSON API Plugin for RESTful user authentiocation
-  Version: 2.0.0
+  Version: 2.5.0
   Author: Ali Qureshi
   Author URI: http://www.parorrey.com
   License: GPLv3
@@ -16,7 +16,18 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
 define('JSON_API_AUTH_HOME', dirname(__FILE__));
 
-if (!is_plugin_active('json-api/json-api.php')) {
+function auth_action_links( $links ) {
+	
+	$links[] = '<a href="'. esc_url( get_admin_url(null, '/options-general.php?page=json-api') ) .'">JSON API</a>';
+  
+  $links[] = '<a href="https://www.parorrey.com/solutions/json-api-user-plus/" target="_blank">' . __( 'Upgrade to User Plus', 'json-api-auth' ) . '</a>';
+
+ return $links;
+}
+add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'auth_action_links', 10, 1 );
+
+
+if (!(is_plugin_active('json-api/json-api.php') || is_plugin_active('json-api-master/json-api.php')) ) {
 
     add_action('admin_notices', 'pim_auth_draw_notice_json_api');
 
@@ -36,7 +47,7 @@ function pim_auth_draw_notice_json_api() {
 
     echo '<div id="message" class="error fade"><p style="line-height: 150%">';
 
-    _e('<strong>JSON API Auth</strong></a> requires the JSON API plugin to be activated. Please <a href="https://wordpress.org/plugins/json-api/">install / activate JSON API</a> first.', 'json-api-user');
+    _e('<strong>JSON API Auth</strong></a> requires the JSON API plugin to be activated. Please <a href="https://github.com/PI-Media/json-api">install / activate JSON API</a> first from <a href="https://github.com/PI-Media/json-api" target="_blank">GitHub repository here</a>. <br>You can also upgrade to a pro verison <a href="http://www.parorrey.com/solutions/json-api-user-plus/" target="_blank">JSON API User Plus</a> for JSON API Auth.', 'json-api-auth');
 
     echo '</p></div>';
 

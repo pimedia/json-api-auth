@@ -48,8 +48,9 @@ class JSON_API_Auth_Controller {
 		else $seconds = 1209600;//14 days
 		$user = wp_authenticate($json_api->query->username, $json_api->query->password);
 		if (is_wp_error($user)) {
-			$json_api->error("Invalid username and/or password.", 'error', '401');
 			remove_action('wp_login_failed', $json_api->query->username);
+			$json_api->error("Invalid username and/or password.", 'error', '401');
+			
 		}
 		$expiration = time() + apply_filters('auth_cookie_expiration', $seconds, $user->ID, true);
 		$cookie = wp_generate_auth_cookie($user->ID, $expiration, 'logged_in');

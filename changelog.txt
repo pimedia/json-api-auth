@@ -1,0 +1,86 @@
+== Changelog ==
+
+= 1.9.4 =
+
+* Updated logo and header.
+
+= 1.9.3 =
+
+* Added minimum php version requirement.
+
+= 1.9.2 =
+
+* Added icons, screenshots, & fixed plugin header. 
+
+= 1.9.1 =
+
+* Updated for WordPress 4.9.8 version. 
+
+= 1.9 =
+
+* Updated for WordPress 4.9 version. 
+
+
+= 1.8 =
+
+* Updated for WordPress 4.4 version. Made it secure by adding SSL check and adding POST method support, thanks to 'xiffy' for sharing code. 
+
+= 1.7 =
+
+* updated for wordpress 4.1.2 version
+
+= 1.6 =
+
+* generate_auth_cookie does not require nonce any more to generate cookie.
+* generate_auth_cookie now also returns 'cookie_name'.
+
+= 1.5.1 =
+
+* Fixed the JSON API Plugin link with protocol
+* Updated notes for documentation.
+
+
+= 1.5 =
+
+* Added the function to authenticate, allow the user (with edit rights) to use JSON API core controllers as well. Thanks `necro_txilok` for the suggestion.
+* Removed `clear_auth_cookie` for not doing what it intends to do, instead `generate_auth_cookie` has been modified to allow setting up auth cookie for any required duration. Just provide the `seconds` var with `nonce`, `username` and `password` to get required cookie. Default time is 14 days.
+* Fixed typos in documentation. 
+
+= 1.4 =
+
+* update for WordPress 4.1
+
+= 1.3 =
+
+* Removed bug for generating cookie
+
+
+= 1.2 =
+
+* Updated plugin description, documentation and few urls
+
+= 1.1 =
+
+* Added clear_auth_cookie() for removing auth cookie.
+
+* Added documentation for the available end points
+
+
+= 1.0 =
+
+* Added the user avatar info for generate_auth_cookie() and get_currentuserinfo()
+
+
+* Updated the FAQs
+
+= 0.1 =
+
+* Initial release.
+
+
+
+== Upgrade Notice ==
+
+= 0.1 =
+
+* Initial release.
